@@ -18,3 +18,25 @@ if __name__ == '__main__':
     result = caesarCipher(s, k)
     fptr.write(result + '\n')
     fptr.close()
+
+
+
+
+
+
+ # Test Case
+import unittest
+
+class TestCaesarCipher(unittest.TestCase):
+    def test_caesar_cipher(self):
+        self.assertEqual(caesarCipher("middle-Outz", 2), "okffng-Qwvb")
+        self.assertEqual(caesarCipher("abcdefghijklmnopqrstuvwxyz", 3), "defghijklmnopqrstuvwxyzabc")
+        self.assertEqual(caesarCipher("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 3), "DEFGHIJKLMNOPQRSTUVWXYZABC")
+        self.assertEqual(caesarCipher("There's-a-starman-waiting-in-the-sky", 3), "Wkhuh'v-d-vwdupdq-zdlwlqj-lq-wkh-vnb")
+        self.assertEqual(caesarCipher("123!@#", 5), "123!@#")
+        self.assertEqual(caesarCipher("xyz", 5), "cde")
+        self.assertEqual(caesarCipher("XYZ", 5), "CDE")
+        self.assertEqual(caesarCipher("", 5), "")
+
+if __name__ == '__main__':
+    unittest.main()
