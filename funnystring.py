@@ -18,3 +18,34 @@ if __name__ == '__main__':
         fptr.write(result + '\n')
         
     fptr.close()
+
+
+
+ # Test Case
+import unittest
+
+class TestFunnyString(unittest.TestCase):
+    def test_funny_string(self):
+        # Test Case 1: สตริง "Funny"
+        self.assertEqual(funnyString("acxz"), "Funny")
+        
+        # Test Case 2: สตริง "Not Funny"
+        self.assertEqual(funnyString("bcxz"), "Not Funny")
+        
+        # Test Case 3: สตริงที่มีตัวอักษรซ้ำกัน
+        self.assertEqual(funnyString("aaaa"), "Funny")
+        
+        # Test Case 4: สตริงที่มีความยาว 2 ตัวอักษร
+        self.assertEqual(funnyString("ab"), "Funny")
+        
+        # Test Case 5: สตริงที่มีตัวอักษรผสม
+        self.assertEqual(funnyString("abba"), "Funny")
+        
+        # Test Case 6: สตริงที่มีตัวอักษรผสมและไม่ "Funny"
+        self.assertEqual(funnyString("abcd"), "Funny")
+        
+        # Test Case 7: สตริงที่มีตัวอักษรพิเศษ
+        self.assertEqual(funnyString("!@#$"), "Not Funny")
+
+if __name__ == '__main__':
+    unittest.main()
