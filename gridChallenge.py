@@ -1,33 +1,36 @@
+import unittest
+
 def gridChallenge(grid):
-    # Sort each row alphabetically
     for i in range(len(grid)):
         grid[i] = ''.join(sorted(grid[i]))
-    
-    # Check if columns are sorted
+
     for col in range(len(grid[0])):
         for row in range(1, len(grid)):
             if grid[row][col] < grid[row - 1][col]:
                 return "NO"
     return "YES"
 
-
-
-    
-
- # Test Case
 import unittest
+
+
+
 
 class TestGridChallenge(unittest.TestCase):
     def test_grid_challenge(self):
-        self.assertEqual(gridChallenge(["abc", "ade", "efg"]), "YES")
-        self.assertEqual(gridChallenge(["ebacd", "fghij", "olmkn", "trpqs", "xywuv"]), "YES")
-        self.assertEqual(gridChallenge(["mpxz", "abcd", "wlmf"]), "NO")
-        self.assertEqual(gridChallenge(["abc", "hjk", "mpq", "rtv"]), "YES")
-        self.assertEqual(gridChallenge(["a"]), "YES")
-        self.assertEqual(gridChallenge(["abc", "def", "ghi"]), "YES")
-        self.assertEqual(gridChallenge(["xyz", "abc", "def"]), "NO")
-        self.assertEqual(gridChallenge(["zzz", "zzz", "zzz"]), "YES")
-        self.assertEqual(gridChallenge(["zzz", "aaa", "bbb"]), "NO")
+        test_cases = [
+            (["abc", "ade", "efg"], "YES"),  # test 0
+            (["uxf", "vof", "hmp"], "NO"),  # test 1
+            (["lyivr", "uweor", "qxwyr", "uikjd"], "NO"),  # test 2
+            (["a"], "YES"),
+            (["zzzz", "yyyy", "xxxx", "wwww"], "NO"),
+            (["abc", "defg", "hij"], "YES"),
+            (["ebacd", "fghij", "olmkn", "trpqs", "xywuv"], "YES"),
+            (["abcde", "fghij", "klmno", "pqrst", "uvwxy"], "YES"),
+        ]
+
+        for grid, expected in test_cases:
+            with self.subTest(grid=grid):
+                self.assertEqual(gridChallenge(grid), expected)
 
 if __name__ == '__main__':
     unittest.main()
