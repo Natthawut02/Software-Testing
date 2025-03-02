@@ -1,51 +1,27 @@
-def funnyString(s):
-    reversed_s = s[::-1]
-    diff_s = [abs(ord(s[i]) - ord(s[i+1])) for i in range(len(s)-1)]
-    diff_reversed = [abs(ord(reversed_s[i]) - ord(reversed_s[i+1])) for i in range(len(reversed_s)-1)]
-    
-    if diff_s == diff_reversed:
-        return "Funny"
-    else:
-        return "Not Funny"
-    
-if __name__ == '__main__':
-    import os
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-    q = int(input().strip())
-    for q_itr in range(q):
-        s = input()
-        result = funnyString(s)
-        fptr.write(result + '\n')
-        
-    fptr.close()
-
-
-
- # Test Case
 import unittest
+
+
+def funnyString(s):
+    r = s[::-1]
+    for i in range(1, len(s)):
+        if abs(ord(s[i]) - ord(s[i - 1])) != abs(ord(r[i]) - ord(r[i - 1])):
+            return "Not Funny"
+    return "Funny"
+
 
 class TestFunnyString(unittest.TestCase):
     def test_funny_string(self):
-        # Test Case 1: สตริง "Funny"
-        self.assertEqual(funnyString("acxz"), "Funny")
-        
-        # Test Case 2: สตริง "Not Funny"
-        self.assertEqual(funnyString("bcxz"), "Not Funny")
-        
-        # Test Case 3: สตริงที่มีตัวอักษรซ้ำกัน
-        self.assertEqual(funnyString("aaaa"), "Funny")
-        
-        # Test Case 4: สตริงที่มีความยาว 2 ตัวอักษร
-        self.assertEqual(funnyString("ab"), "Funny")
-        
-        # Test Case 5: สตริงที่มีตัวอักษรผสม
-        self.assertEqual(funnyString("abba"), "Funny")
-        
-        # Test Case 6: สตริงที่มีตัวอักษรผสมและไม่ "Funny"
-        self.assertEqual(funnyString("abcd"), "Funny")
-        
-        # Test Case 7: สตริงที่มีตัวอักษรพิเศษ
-        self.assertEqual(funnyString("!@#$"), "Not Funny")
-
-if __name__ == '__main__':
-    unittest.main()
+        self.assertEqual(funnyString("acxz"), "Funny")  # ผลต่างของ s และ r เท่ากัน
+        self.assertEqual(funnyString("bcxz"), "Not Funny")  # ผลต่างของ s และ r ไม่เท่ากัน
+        self.assertEqual(funnyString("abcd"), "Funny")  # ผลต่างของ s และ r เท่ากัน
+        self.assertEqual(funnyString("aaaa"), "Funny")  # ทุกตัวอักษรเหมือนกัน ผลต่างเป็น 0
+        self.assertEqual(funnyString("abba"), "Funny")  # ผลต่างของ s และ r เท่ากัน
+        self.assertEqual(funnyString("ivvkxq"), "Not Funny")  # ผลต่างของ s และ r ไม่เท่ากัน
+        self.assertEqual(funnyString("xxyy"), "Funny")  # ผลต่างของ s และ r เท่ากัน
+        self.assertEqual(funnyString("ivvkx"), "Not Funny")  # ผลต่างของ s และ r ไม่เท่ากัน
+        self.assertEqual(
+            funnyString(
+                "fmpszyvqwxrtvpuwqszvyvotmsxsxuvzyvpwzrpmuxqwtswvytytzsnuxuyrpvtysqoutzurqxury"
+            ),
+            "Not Funny",
+        )
