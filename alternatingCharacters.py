@@ -14,3 +14,21 @@ if __name__ == '__main__':
         result = alternatingCharacters(s)
         fptr.write(str(result) + '\n')
     fptr.close()
+
+
+
+# Test Cases
+    def test_alternating_characters(self):
+        self.assertEqual(alternatingCharacters("AAAA"), 3)
+        self.assertEqual(alternatingCharacters("BBBBB"), 4)
+        self.assertEqual(alternatingCharacters("ABABABAB"), 0)
+        self.assertEqual(alternatingCharacters("BABABA"), 0)
+        self.assertEqual(alternatingCharacters("AAABBB"), 4)
+        self.assertEqual(alternatingCharacters("A"), 0)
+        self.assertEqual(alternatingCharacters("AB"), 0)
+        self.assertEqual(alternatingCharacters("ABA"), 0)
+        self.assertEqual(alternatingCharacters("ABAB"), 0)
+        self.assertEqual(alternatingCharacters("ABABBB"), 1)
+
+if __name__ == '__main__':
+    unittest.main()
